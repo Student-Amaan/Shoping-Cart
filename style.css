@@ -1,0 +1,104 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Body Background */
+body {
+  background: linear-gradient(135deg, #ff4e50, #f9d423);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Main Container */
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  width: 400px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+/* Headings */
+h1 {
+  color: #ff4e50;
+  margin-bottom: 15px;
+}
+
+h2 {
+  margin-top: 20px;
+  color: #f57c00;
+}
+
+/* Product & Cart Box */
+#product-list, 
+#cart-items {
+  margin-top: 15px;
+  padding: 15px;
+  background: linear-gradient(135deg, #fff5f5, #fff3e0);
+  border-radius: 12px;
+  min-height: 80px;
+  box-shadow: inset 0 3px 8px rgba(0,0,0,0.05);
+}
+
+/* Empty Cart Text */
+#empty-cart {
+  color: gray;
+  font-style: italic;
+}
+
+/* Cart Total Section */
+#cart-total {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ff4e50, #f9a825);
+  color: white;
+}
+
+/* Hidden Class */
+.hidden {
+  display: none;
+}
+
+/* Price Text */
+#total-price {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* Button Style */
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #ff4e50, #ff6f00);
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+/* Button Hover Effect */
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Button Click Effect */
+button:active {
+  transform: scale(0.95);
+}
+
+/* Scroll if many items */
+#product-list, #cart-items {
+  max-height: 150px;
+  overflow-y: auto;
+}
