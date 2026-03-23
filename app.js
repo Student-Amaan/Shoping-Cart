@@ -22,4 +22,18 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     productList.appendChild(productDiv);
   });
+
+  productList.addEventListener('click', (e) => {
+    if(e.target.tagName === 'BUTTON'){
+        const productId = parseInt(e.target.getAttribute("data-id"))
+        const product  = products.find((p) => p.id === productId)
+        addToCart(product)
+
+    }
+  })
+
+  function addToCart(product) {
+    saveCart.push(product);
+    console.log(saveCart);
+  }
 });
