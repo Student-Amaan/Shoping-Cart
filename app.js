@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: 3, name: "specialfood", price: 70.99 },
   ];
 
-  let saveCart = [];
+  let saveCart = JSON.parse(localStorage.getItem("saveCart")) || [];
   const productList = document.getElementById("product-list");
   const cardItems = document.getElementById("cart-items");
   const emptyCard = document.getElementById("empty-cart");
@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function addToCart(product) {
     saveCart.push(product);
+    localStorage.setItem("saveCart", JSON.stringify(saveCart));
     addranderTask(saveCart);
   }
 
@@ -51,18 +52,35 @@ document.addEventListener("DOMContentLoaded", () => {
         <button class="remove-btn" data-index=${index}>X</button>
         `;
         cardItems.appendChild(cardItem);
-        totalPrice.textContent = `${totalPriceMsg.toFixed(2)}`
+        totalPrice.textContent = `${totalPriceMsg.toFixed(2)}`;
       });
     } else {
       emptyCard.classList.remove("hidden");
       totalPrice.textContent = `$0.00`;
     }
-    localStorage.setItem('cart',JSON.stringify(saveCart))
+    localStorage.setItem("saveCart", JSON.stringify(saveCart));
+
+    
   }
 
-  checkOutBtn.addEventListener('click', () =>{
-    saveCart.length = 0
-    alert('Check out Successfully')
-    addranderTask()
-  })
+  cardItems.addEventListener("click", (e) => {
+    if (e.target.classList.contains("remove-btn")) {
+      const index = e.target.getAttribute("data-index");
+
+      saveCart.splice(index, 1);
+
+      localStorage.setItem("saveCart", JSON.stringify(saveCart));
+
+      addranderTask();
+    }
+  });
+
+  checkOutBtn.addEventListener("click", () => {
+    saveCart.length = 0;
+
+    localStorage.setItem("saveCart", JSON.stringify(saveCart));
+
+    alert("Check out Successfully");
+    addranderTask();
+  });
 });
