@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const cardItem = document.createElement("div");
         cardItem.innerHTML = `
         ${item.name} - $${item.price.toFixed(1)}
+        <button class="remove-btn" data-index=${index}>X</button>
         `;
         cardItems.appendChild(cardItem);
         totalPrice.textContent = `${totalPriceMsg.toFixed(2)}`
@@ -56,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
       emptyCard.classList.remove("hidden");
       totalPrice.textContent = `$0.00`;
     }
+    localStorage.setItem('cart',JSON.stringify(saveCart))
   }
 
   checkOutBtn.addEventListener('click', () =>{
