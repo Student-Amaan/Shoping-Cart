@@ -23,17 +23,44 @@ document.addEventListener("DOMContentLoaded", () => {
     productList.appendChild(productDiv);
   });
 
-  productList.addEventListener('click', (e) => {
-    if(e.target.tagName === 'BUTTON'){
-        const productId = parseInt(e.target.getAttribute("data-id"))
-        const product  = products.find((p) => p.id === productId)
-        addToCart(product)
-
+  productList.addEventListener("click", (e) => {
+    if (e.target.tagName === "BUTTON") {
+      const productId = parseInt(e.target.getAttribute("data-id"));
+      const product = products.find((p) => p.id === productId);
+      addToCart(product);
     }
-  })
+  });
 
   function addToCart(product) {
     saveCart.push(product);
-    console.log(saveCart);
+    addranderTask(saveCart);
   }
+
+  function addranderTask() {
+    cardItems.innerText = "";
+    let totalPriceMsg = 0;
+
+    if (saveCart.length > 0) {
+      emptyCard.classList.add("hidden");
+      cardTotal.classList.remove("hidden");
+      saveCart.forEach((item, index) => {
+        totalPriceMsg += item.price;
+        const cardItem = document.createElement("div");
+        cardItem.innerHTML = `
+        ${item.name} - $${item.price.toFixed(1)}
+        `;
+        cardItems.appendChild(cardItem);
+        totalPrice.textContent = `${totalPriceMsg.toFixed(2)}`
+      });
+    } else {
+      emptyCard.classList.remove("hidden");
+      totalPrice.textContent = `$0.00`;
+    }
+  }
+
+  checkOutBtn.addEventListener('click', () =>{
+    saveCart.length = 0
+    alert('Check out Successfully')
+    addranderTask()
+  })
 });
